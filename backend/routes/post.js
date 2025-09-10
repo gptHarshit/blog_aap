@@ -32,15 +32,44 @@ postRouter.get('/',async (req,res) => {
     } catch (error) {
         res.status(400).send("Post not found");
     }
-})
+});
+
+postRouter.get('/:id', async (req, res) => {
+try {
+    const IsAvaible = await Post.findById(req.params.id);
+    if(!IsAvaible){
+        throw new Error("This post is not avaible"); 
+    }
+    const post = await Post.findById(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    res.json(post);
+  } catch (err) {
+    console.error(err);
+    res.status(404).send("ERRROR : " + err.message);
+  }
+});
+
+
+
+postRouter.delete('/:id', async (req, res) => {
+try {
+    const IsAvaible = await Post.findById(req.params.id);
+    if(!IsAvaible){
+        throw new Error("This post is not avaible"); 
+    }
+    const post = await Post.findByIdAndDelete(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    res.json({ message: 'Post deleted Successfully' });
+} catch (err) {
+    console.error(err);
+    res.status(404).send("ERRROR : " + err.message);
+}
+});
+
 
 module.exports = postRouter;
 
 
-// postRouter.get('/:id', async (req,res) => {
-//     try {
 
-//     } catch (error) {
-//         res.status(400).send("user not found");
-//     }
-// });
+
+
