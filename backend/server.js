@@ -2,14 +2,20 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const {connectDB} = require('./config/database');
+const postRouter = require('./routes/post');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+app.use('/api/posts',postRouter);
+
+
 app.get('/', (req, res) => {
   res.send('Blogging API running...');
 });
+
 
 connectDB()
   .then(() => {
