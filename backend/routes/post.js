@@ -16,7 +16,7 @@ postRouter.post('/',async (req,res) => {
 
         const post = new Post({title,content,author,tags});
         const postsaved = await post.save();
-        console.log(postsaved);
+       // console.log(postsaved);
         res.status(201).json(post);
 
     } catch (error) {
@@ -24,4 +24,23 @@ postRouter.post('/',async (req,res) => {
     }
 });
 
+postRouter.get('/',async (req,res) => {
+    try {
+        const posts = await Post.find({});
+        res.status(200).json(posts);
+       // console.log(posts);
+    } catch (error) {
+        res.status(400).send("Post not found");
+    }
+})
+
 module.exports = postRouter;
+
+
+// postRouter.get('/:id', async (req,res) => {
+//     try {
+
+//     } catch (error) {
+//         res.status(400).send("user not found");
+//     }
+// });
