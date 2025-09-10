@@ -13,7 +13,7 @@
 ## Links
 
 - **GitHub Repository**: [Click here](https://github.com/gptHarshit/blog_aap)  
-- **Deployed App**: [Click here](https://your-deployed-link.vercel.app)  
+- **Deployed App**: [Click here](https://blog-4k36t2qn3-gptharshits-projects.vercel.app/)  
 
 
 # Setup 
