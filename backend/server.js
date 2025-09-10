@@ -8,9 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 4000;
+
 
 app.use(cors({
-  origin: 'http://localhost:3000', 
+  origin: process.env.CLIENT_URL || '*', 
   methods: ['GET','POST','PUT','DELETE'],
   credentials: true
 }));
@@ -28,8 +30,8 @@ connectDB()
   .then(() => {
     console.log("Database Connection Established Successfully");
 
-    app.listen(4000, () => {
-      console.log("Server is Successfully listening on PORT : 4000");
+    app.listen(PORT, () => {
+      console.log(`Server is Successfully listening on PORT : ${PORT}`);
     });
   })
   .catch(() => {
